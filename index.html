@@ -300,23 +300,19 @@ Our contribution:
               <div class="infoBody">
                 <div class="columns is-centered has-text-centered">
                   <div class="column is-four-fifths">
-                    <h2 class="is-3"><strong>BioCoder-Py</strong></h2>
+                    <h2 class="is-3"><strong>ML-Bench</strong></h2>
                   </div>
                 </div>
-                <p align="left">
-                  <div class="left">Notice: t=temperature, top-p=top-p cutoff, len = max context length (max generation length is 256). Furthermore, only the Summary Only scores are reported.
-                  </div>
-                </p>
+
                 <table class="table performanceTable">
                   <tr>
                     <th>Rank</th>
                     <th>Model</th>
-                    <th>Details</th>
                     <th>Pass@1</th>
+                    <th>Pass@2</th>
                     <th>Pass@5</th>
-                    <th>Pass@10</th>
-                    <th>Pass@20</th>
-                  </tr>
+
+                </tr>
 
                   <tr>
                     <td>
@@ -326,205 +322,47 @@ Our contribution:
                       </span>
                     </td>
                     <td style="word-break:break-word;">
-                      gpt-4
+                      GPT-4
                       <p class="institution">Azure OpenAI</p>
                       <!--TODO: CHANGE LINKS-->
                     </td>
-                    <td style="word-break:break-word;">
-                      Completion
-                      <p>t=0.7, top-p=0.95</p>
-                      <p>len = 8192</p>
-                    </td>
-                    <td>38.439</td>
-                    <td>48.491</td>
-                    <td>50.619</td>
-                    <td>52.229</td>
+              
+                    <td>39.73</td>
+                    <td>47.94</td>
+                    <td>61.64</td>
                   </tr>
 
                   <tr>
-                    <td>
-                      <p>2</p>
-                      <span class="date label label-default">
-                        Mar 01, 2023
-                      </span>
-                    </td>
+              
                     <td style="word-break:break-word;">
-                      gpt-3.5-turbo
+                      GPT-3.5-Turbo
                       <p class="institution">Azure OpenAI</p>
                       <!--TODO: CHANGE LINKS-->
                     </td>
-                    <td style="word-break:break-word;">
-                      Completion
-                      <p>t=0.7, top-p=0.95</p>
-                      <p>len = 8192</p>
-                    </td>
-                    <td>24.682</td>
-                    <td>33.997</td>
-                    <td>37.132</td>
-                    <td>40.127</td>
+              
+                    <td>35.61</td>
+                    <td>41.10</td>
+                    <td>54.79</td>
                   </tr>
 
                   <tr>
                     <td>
                       <p>3</p>
                       <span class="date label label-default">
-                        May 09, 2023
+                        July 11, 2023
                       </span>
                     </td>
                     <td style="word-break:break-word;">
-                      Starcoder
-                      <p class="institution">Bigcode</p>
+                      Claude 2
+                      <p class="institution">Anthropic</p>
                       <!--TODO: REPLACE-->
-<a class="link" href="https://arxiv.org/abs/2305.06161">Li et al., '23</a>
                     </td>
-                    <td style="word-break:break-word;">
-                      Completion
-                      <p>t=0.7, top-p=0.95</p>
-                      <p>len = 8192</p>
-                    </td>
-                    <td>4.682</td>
-                    <td>15.225</td>
-                    <td>21.200</td>
-                    <td>27.166</td>
+                  
+                    <td>30.13</td>
+                    <td>41.10</td>
+                    <td>43.84</td>
                   </tr>
 
-                  <tr>
-                    <td>
-                      <p>4</p>
-                      <span class="date label label-default">
-                        May 09, 2023
-                      </span>
-                    </td>
-                    <td style="word-break:break-word;">
-                      StarCoder+
-                      <p class="institution">Bigcode</p>
-<a class="link" href="https://arxiv.org/abs/2305.06161">Li et al., '23</a>
-                    </td>
-                    <td style="word-break:break-word;">
-                      Completion
-                      <p>t=0.7, top-p=0.95</p>
-                      <p>len = 8192</p>
-                    </td>
-                    <td>2.548</td>
-                    <td>8.279</td>
-                    <td>12.864</td>
-                    <td>18.057</td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <p>5</p>
-                      <span class="date label label-default">
-                        Dec 22, 2022
-                      </span>
-                    </td>
-                    <td style="word-break:break-word;">
-                      SantaCoder
-                      <p class="institution">Bigcode</p>
-                      <a class="link" href="https://arxiv.org/abs/2301.03988">Allal et al., '22</a>
-                    </td>
-                    <td style="word-break:break-word;">
-                      Completion
-                      <p>t=0.7, top-p=0.95</p>
-                      <p>len = 2048</p>
-                    </td>
-                    <td>2.965</td>
-                    <td>9.848</td>
-                    <td>14.227</td>
-                    <td>18.181</td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <p>6</p>
-                      <span class="date label label-default">
-                        Nov 08, 2022
-                      </span>
-                    </td>
-                    <td style="word-break:break-word;">
-                      InCoder-6B
-                      <p class="institution">Facebook AI</p>
-                      <a class="link" href="https://arxiv.org/abs/2204.05999">Fried et al., '22</a>
-                    </td>
-                    <td style="word-break:break-word;">
-                      Completion
-                      <p>t=0.7, top-p=0.95</p>
-                      <p>len = 2048</p>
-                    </td>
-                    <td>1.688</td>
-                    <td>5.320</td>
-                    <td>8.332</td>
-                    <td>12.006</td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <p>7</p>
-                      <span class="date label label-default">
-                        May 03, 2023
-                      </span>
-                    </td>
-                    <td style="word-break:break-word;">
-                      CodeGen2-7B
-                      <p class="institution">Salesforce Research</p>
-                      <a class="link" href="https://arxiv.org/abs/2305.02309">Nijkamp et al., '23</a>
-                    </td>
-                    <td style="word-break:break-word;">
-                      Completion
-                      <p>t=0.7, top-p=0.95</p>
-                      <p>len = 2048</p>
-                    </td>
-                    <td>0.860</td>
-                    <td>2.494</td>
-                    <td>3.962</td>
-                    <td>6.242</td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <p>8</p>
-                      <span class="date label label-default">
-                        Nov 08, 2022
-                      </span>
-                    </td>
-                    <td style="word-break:break-word;">
-                      CodeGen-6B
-                      <p class="institution">Salesforce Research</p>
-                      <a class="link" href="https://arxiv.org/abs/2203.13474">Nijkamp et al., '22</a>
-                    </td>
-                    <td style="word-break:break-word;">
-                      Completion
-                      <p>t=0.7, top-p=0.95</p>
-                      <p>len = 2048</p>
-                    </td>
-                    <td>0.637</td>
-                    <td>0.637</td>
-                    <td>0.637</td>
-                    <td>0.637</td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <p>9</p>
-                      <span class="date label label-default">
-                        May 15, 2023  
-                      </span>
-                    </td>
-                    <td style="word-break:break-word;">
-                      InstructCodeT5+ 16B
-                      <p class="institution">Salesforce Research</p>
-                      <a class="link" href="https://arxiv.org/abs/2305.07922">Wang et al., '23</a>
-                    </td>
-                    <td style="word-break:break-word;">
-                      Completion
-                      <p>t=0.7, top-p=0.95</p>
-                      <p>len = 2048</p>
-                    </td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                  </tr>
 
                 </table>
               </div>
