@@ -1,0 +1,45 @@
+Write a function with the following specs:
+
+--specs begin here--
+write a function named "getValue" that takes in two parameters, a long value and an integer color. The function should return a long value. Inside the function, create a variable named "mask" and set its value to (1L << (color + 1) * 20) - (1L << color * 20). Finally, return the result of the bitwise-and operation between "value" and "mask", right-shifted by "color * 20".
+
+param: value (long) - long value to extract a portion from.
+
+param: color (int) - index of the specific portion to retrieve.
+
+return: (long) - the extracted portion of the value.
+--specs end here--
+
+Note the function will be embedded in the following context
+--context begins here--
+import org.apache.commons.math3.distribution.HypergeometricDistribution;
+import java.text.DecimalFormat;
+import java.util.*;
+import java.util.function.Function;
+import htsjdk.samtools.util.SequenceUtil;
+import java.util.Objects;
+
+class ColoredKmerOperations {
+
+    private static final int POWER = 20;
+
+    <<insert solution here>>
+
+    public static long addValue(long value, int color) {
+        return addValue(value, color, (short)1);
+    }
+
+    public static long addValue(long value, int color, short add) {
+        long colorValue = getValue(value, color);
+        long newColorValue = Math.min(colorValue + add, (1L<<POWER) - 1);
+        long newValue = setValue(value, color, newColorValue);
+        return newValue;
+    }
+
+    public static long setValue(long value, int color, long newColorValue) {
+// context continues
+--context ends here--
+
+Make sure to only generate the function and not any of the context. Make sure you are generating valid, runnable code. Begin your solution with:
+public static long getValue(long value, int color) { 
+

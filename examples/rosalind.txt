@@ -1,0 +1,25 @@
+# A gap is a contiguous sequence of spaces in a row of an alignment. One way to score gaps more appropriately is to define an affine penalty for a gap of length k as σ + ε · (k − 1), where σ is the gap opening penalty, assessed to the first symbol in the gap, and ε is the gap extension penalty, assessed to each additional symbol in the gap. We typically select ε to be smaller than σ so that the affine penalty for a gap of length k is smaller than the penalty for k independent single-nucleotide indels (σ · k).
+# Alignment with Affine Gap Penalties Problem
+# Construct a highest-scoring global alignment of two strings (with affine gap penalties).
+# Given: Two amino acid strings v and w (each of length at most 100).
+# Return: The maximum alignment score between v and w, followed by an alignment of v and w achieving this maximum score. Use the BLOSUM62 scoring matrix, a gap opening penalty of 11, and a gap extension penalty of 1.
+# Sample Dataset
+# PRTEINS
+# PRTWPSEIN
+# Sample Output
+# 8
+# PRT---EINS
+# PRTWPSEIN-
+#write the solve() function to solve the above problem
+#Do NOT print anything
+#Do NOT make comments
+#Do NOT call the main() function.
+#Use 4 spaces for tabs. 
+#input_str: a string
+#return output: another string
+def main():
+    with open("input.txt", "r") as f:
+        output = solve(f.read())
+    print(output)
+# Write your solution here
+# Begin with: def solve(input_str):

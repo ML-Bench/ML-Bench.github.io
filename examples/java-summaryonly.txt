@@ -1,0 +1,2 @@
+#This is in java
+#write a function named "getValue" that takes in two parameters, a long value and an integer color. The function should return a long value. Inside the function, create a variable named "mask" and set its value to (1L << (color + 1) * 20) - (1L << color * 20). Finally, return the result of the bitwise-and operation between "value" and "mask", right-shifted by "color * 20".
