@@ -1,28 +1,1137 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ML-Bench</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
-            text-align: center;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #666;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="description" content="BioCoder: A Benchmark for Bioinformatics Code Generation with Contextual Pragmatic Knowledge">
+  <meta name="keywords" content="BioCoder, bioinformatics, code-generation, codex, semantic-parsing">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BioCoder: A Benchmark for Bioinformatics Code Generation with Contextual Pragmatic Knowledge</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.table.min.css">
+  <!--  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">-->
+  <link rel="stylesheet" href="./stylesheets/layout.css">
+  <link rel="stylesheet" href="./stylesheets/index.css">
+
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
 </head>
+
 <body>
 
+  <!-- 
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" href="https://hkunlp.github.io/">
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
+        </a>
 
-    <p> Coming soon... </p>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More Research
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://yale-lily.github.io/spider">
+              Spider
+            </a>
+            <a class="navbar-item" href="https://unifiedskg.com">
+              UnifiedSKG
+            </a>
+            <a class="navbar-item" href="https://github.com/Yushi-Hu/IC-DST">
+              IC-DST
+            </a>
+            <a class="navbar-item" href="https://github.com/HKUNLP/icl-selective-annotation">
+              Selective Annotation
+            </a>
+            <a class="navbar-item" href="https://lm-code-binder.github.io/">
+              Binder
+            </a>
+            <a class="navbar-item" href="https://instructor-embedding.github.io/">
+              Instructor
+            </a>
+          </div>
+        </div>
+      </div>
 
+    </div>
+  </nav> 
+  
+  -->
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">BioCoder: A Benchmark for Bioinformatics Code Generation with Contextual Pragmatic Knowledge </h1>
+            <div class="is-size-5 publication-authors">
+              <!--TODO: CHANGE THE AUTHOR URLS HERE-->
+              <span class="author-block">
+                <a href="">Xiangru Tang*</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="">Bill Qian*</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="">Rick Gao</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="">Jiakang Chen</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="">Xinyun Chen</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="">Mark Gerstein</a><sup>1</sup>,
+              </span>
+            </div>
+
+<div class="is-size-5 publication-authors">
+  <span class="author-block"><sup>1</sup>Yale University </span>
+  <span class="author-block"><sup>  2</sup>Google Deepmind</span>
+</div>
+
+
+<div class="is-size-5 publication-authors">
+  <span class="author-block" style="font-size: 13px;"><sup>*</sup> Contributed equally.</span>
+</div>
+
+
+
+
+            
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2308.16458"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <!-- TODO: Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/gersteinlab/BioCoder"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- TODO: Dataset Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/gersteinlab/BioCoder/tree/main/datasets"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="far fa-images"></i>
+                    </span>
+                    <span>Data</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+
+        <h2 class="subtitle has-text-centered">
+BioCoder is a challenging bioinformatics code generation benchmark for examining the capabilities of state-of-the-art large language models (LLMs)     
+         <br>          <br> 
+          <img src="static/images/bi.jpg">
+          
+<div style="text-align: has-text-centered;">
+  <br>
+In addition to the dataset, BioCoder also features:
+
+<div style="text-align: left;">
+
+<br>
+1. A syntax parser for real-world projects, which can be used to extract code snippets from GitHub repositories.
+<br><br>
+2. An flexible model generation framework that automates the code generation process.
+<br><br>
+3. A scalable testing framework utilizing both static analysis, manual test cases, and the fuzzing technique, which greatly improves the efficiency of writing test cases.
+        </div>
+       </div>      
+</h2>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Pre-trained language models like ChatGPT have significantly improved code generation. As these models scale up, there is an increasing need for the output to handle more intricate tasks. Moreover, in bioinformatics, generating functional programs poses additional notable challenges due to the amount of domain knowledge, the need for complicated data operations, and intricate functional dependencies between the operations. Here, we present BioCoder, a benchmark developed to evaluate existing pre-trained models in generating bioinformatics code. In relation to function-code generation, BioCoder covers potential package dependencies, class declarations, and global variables. It incorporates 1026 functions and 1243 methods in Python and Java from GitHub and 253 examples from the Rosalind Project. BioCoder incorporates a fuzz-testing framework for evaluation, and we have applied it to evaluate many models including InCoder, CodeGen, CodeGen2, SantaCoder, StarCoder, StarCoder+, InstructCodeT5+, and ChatGPT. Our detailed analysis of these models emphasizes the importance of domain knowledge, pragmatic code generation, and contextual understanding. Our dataset, benchmark, Docker images, and scripts required for testing are all available at <a href="https://github.com/gersteinlab/biocoder">this https URL</a>.            </p>
+<br>
+                    <img src="static/images/benchmark.jpg">
+
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Perturbation and Prompt. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Example Prompts</h2>
+          <div class="content has-text-justified">
+            
+            <p>
+              Here are more prompts, you can copy them and run the models on the
+              playground of <a class="link" href="https://platform.openai.com/playground">OpenAI</a>.
+            </p>
+            
+            <div class="tabs is-centered code_expl_lst" style="margin-bottom: 0;" id="biocoder-prompt-langauge-selector">
+              <ul>
+                <li title="Python" class="is-active" data="python"><a>BioCoder-Py</a></li>
+                <li title="Java" data="java"><a>BioCoder-Java</a></li>
+                <li title="Rosalind" data="rosalind"><a>BioCoder-Rosalind</a></li>
+              </ul>
+            </div>
+            <div class="tabs is-centered code_expl_lst" id="biocoder-prompt-type-selector" style="display: block;">
+              <ul>
+                <li title="Necessary Only" class="is-active" data="necessary"><a>Necessary Only</a></li>
+                <li title="Summary at Top" data="summarytop"><a>Summary at Top</a></li>
+                <li title="Uncommented" data="uncommented"><a>Uncommented</a></li>
+                <li title="Summary Only" data="summaryonly"><a>Summary Only</a></li>
+                <li title="Summary at Bottom" data="summarybottom"><a>Summary at Bottom</a></li>
+              </ul>
+            </div>
+
+            <script>
+              const cache = {};
+              
+              // add event listener to language selector
+
+              document.querySelectorAll('#biocoder-prompt-langauge-selector li').forEach(function (item) {
+                item.addEventListener('click', function () {
+                  // if language is rosalind, disable type selector
+                  if (this.getAttribute('data') === 'rosalind') {
+                    document.querySelector('#biocoder-prompt-type-selector').style.display = 'none';
+                  } else {
+                    document.querySelector('#biocoder-prompt-type-selector').style.display = 'block';
+                  }
+                  // if language is java, disable summary bottom
+
+                  if (this.getAttribute('data') === 'java') {
+                    document.querySelector('#biocoder-prompt-type-selector li[data="summarybottom"]').style.display = 'none';
+                  } else {
+                    document.querySelector('#biocoder-prompt-type-selector li[data="summarybottom"]').style.display = 'block';
+                  }
+
+                  document.querySelector('#biocoder-prompt-langauge-selector li.is-active').classList.remove('is-active');
+                  this.classList.add('is-active');
+                  set_code();
+                });
+              });
+
+              // add event listener to type selector
+              document.querySelectorAll('#biocoder-prompt-type-selector li').forEach(function (item) {
+                item.addEventListener('click', function () {
+                  document.querySelector('#biocoder-prompt-type-selector li.is-active').classList.remove('is-active');
+                  this.classList.add('is-active');
+                  set_code();
+                });
+              });
+
+              function set_code() {
+                var lang = document.querySelector('#biocoder-prompt-langauge-selector li.is-active').getAttribute('data');
+                var type = document.querySelector('#biocoder-prompt-type-selector li.is-active').getAttribute('data');
+                var data = lang + '-' + type;
+                if (lang === 'rosalind') {
+                  data = 'rosalind';
+                }
+                console.log(data)
+                if (cache[data]) {
+                  document.querySelector('#biocoder-example-txt').innerHTML = cache[data];
+                  return;
+                }
+                // Download code from /examples/[data].txt
+                fetch('/examples/' + data + '.txt')
+                  .then(response => response.text())
+                  .then(text => {
+                    cache[data] = text;
+                    document.querySelector('#biocoder-example-txt').innerHTML = text;
+                  });
+              }
+
+              // set default code when page loaded
+              document.addEventListener('DOMContentLoaded', function () {
+                set_code();
+              });
+            </script>
+
+
+            <div class="examples" style="display: block;" id="biocoder-insertion">
+              <div class="highlighter-rouge">
+                <div class="highlight">
+                  <pre class="highlight" style="margin-top: 0; margin-bottom: 0;"><code id="biocoder-example-txt" style="white-space: pre-wrap; max-height: 800px; overflow-y: auto; overflow-x: auto; display: block;
+                    "></code></pre>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!--/ Perturbation and Prompt. -->
+    </div>
+  </section>
+
+
+
+
+  <section>
+    <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Evaluation</h2>
+          </div>
+        </div>
+      </div>
+    <div class="cover" id="contentCover">
+      <!-- Baseline. -->
+      <div class="container-t">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="infoCard">
+              
+              <div class="infoBody">
+                <div class="columns is-centered has-text-centered">
+                  <div class="column is-four-fifths">
+                    <h2 class="is-3"><strong>BioCoder-Py</strong></h2>
+                  </div>
+                </div>
+                <p align="left">
+                  <div class="left">Notice: t=temperature, top-p=top-p cutoff, len = max context length (max generation length is 256). Furthermore, only the Summary Only scores are reported.
+                  </div>
+                </p>
+                <table class="table performanceTable">
+                  <tr>
+                    <th>Rank</th>
+                    <th>Model</th>
+                    <th>Details</th>
+                    <th>Pass@1</th>
+                    <th>Pass@5</th>
+                    <th>Pass@10</th>
+                    <th>Pass@20</th>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>1</p>
+                      <span class="date label label-default">
+                        Mar 14, 2023
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      gpt-4
+                      <p class="institution">Azure OpenAI</p>
+                      <!--TODO: CHANGE LINKS-->
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 8192</p>
+                    </td>
+                    <td>38.439</td>
+                    <td>48.491</td>
+                    <td>50.619</td>
+                    <td>52.229</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>2</p>
+                      <span class="date label label-default">
+                        Mar 01, 2023
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      gpt-3.5-turbo
+                      <p class="institution">Azure OpenAI</p>
+                      <!--TODO: CHANGE LINKS-->
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 8192</p>
+                    </td>
+                    <td>24.682</td>
+                    <td>33.997</td>
+                    <td>37.132</td>
+                    <td>40.127</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>3</p>
+                      <span class="date label label-default">
+                        May 09, 2023
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Starcoder
+                      <p class="institution">Bigcode</p>
+                      <!--TODO: REPLACE-->
+<a class="link" href="https://arxiv.org/abs/2305.06161">Li et al., '23</a>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 8192</p>
+                    </td>
+                    <td>4.682</td>
+                    <td>15.225</td>
+                    <td>21.200</td>
+                    <td>27.166</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>4</p>
+                      <span class="date label label-default">
+                        May 09, 2023
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      StarCoder+
+                      <p class="institution">Bigcode</p>
+<a class="link" href="https://arxiv.org/abs/2305.06161">Li et al., '23</a>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 8192</p>
+                    </td>
+                    <td>2.548</td>
+                    <td>8.279</td>
+                    <td>12.864</td>
+                    <td>18.057</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>5</p>
+                      <span class="date label label-default">
+                        Dec 22, 2022
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      SantaCoder
+                      <p class="institution">Bigcode</p>
+                      <a class="link" href="https://arxiv.org/abs/2301.03988">Allal et al., '22</a>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 2048</p>
+                    </td>
+                    <td>2.965</td>
+                    <td>9.848</td>
+                    <td>14.227</td>
+                    <td>18.181</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>6</p>
+                      <span class="date label label-default">
+                        Nov 08, 2022
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      InCoder-6B
+                      <p class="institution">Facebook AI</p>
+                      <a class="link" href="https://arxiv.org/abs/2204.05999">Fried et al., '22</a>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 2048</p>
+                    </td>
+                    <td>1.688</td>
+                    <td>5.320</td>
+                    <td>8.332</td>
+                    <td>12.006</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>7</p>
+                      <span class="date label label-default">
+                        May 03, 2023
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      CodeGen2-7B
+                      <p class="institution">Salesforce Research</p>
+                      <a class="link" href="https://arxiv.org/abs/2305.02309">Nijkamp et al., '23</a>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 2048</p>
+                    </td>
+                    <td>0.860</td>
+                    <td>2.494</td>
+                    <td>3.962</td>
+                    <td>6.242</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>8</p>
+                      <span class="date label label-default">
+                        Nov 08, 2022
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      CodeGen-6B
+                      <p class="institution">Salesforce Research</p>
+                      <a class="link" href="https://arxiv.org/abs/2203.13474">Nijkamp et al., '22</a>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 2048</p>
+                    </td>
+                    <td>0.637</td>
+                    <td>0.637</td>
+                    <td>0.637</td>
+                    <td>0.637</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>9</p>
+                      <span class="date label label-default">
+                        May 15, 2023  
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      InstructCodeT5+ 16B
+                      <p class="institution">Salesforce Research</p>
+                      <a class="link" href="https://arxiv.org/abs/2305.07922">Wang et al., '23</a>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 2048</p>
+                    </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="cover" id="contentCover">
+      <!-- Baseline. -->
+      <div class="container-t">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="infoCard">
+              
+              <div class="infoBody">
+                <div class="columns is-centered has-text-centered">
+                  <div class="column is-four-fifths">
+                    <h2 class="is-3"><strong>BioCoder-Java</strong></h2>
+                  </div>
+                </div>
+                <p align="left">
+                  <div class="left">Notice: t=temperature, top-p=top-p cutoff, len = max context length (max generation length is 256). Furthermore, only the Summary Only scores are reported.
+                  </div>
+                </p>
+                <table class="table performanceTable">
+                  <tr>
+                    <th>Rank</th>
+                    <th>Model</th>
+                    <th>Details</th>
+                    <th>Pass@1</th>
+                    <th>Pass@5</th>
+                    <th>Pass@10</th>
+                    <th>Pass@20</th>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>1</p>
+                      <span class="date label label-default">
+                        Mar 14, 2023
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      gpt-4
+                      <p class="institution">Azure OpenAI</p>
+                      <!--TODO: CHANGE LINKS-->
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 8192</p>
+                    </td>
+                    <td>45.011</td>
+                    <td>55.350</td>
+                    <td>57.616</td>
+                    <td>60.000</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>2</p>
+                      <span class="date label label-default">
+                        Mar 01, 2023
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      gpt-3.5-turbo
+                      <p class="institution">Azure OpenAI</p>
+                      <!--TODO: CHANGE LINKS-->
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 8192</p>
+                    </td>
+                    <td>17.400</td>
+                    <td>33.199</td>
+                    <td>37.878</td>
+                    <td>42.000</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>3</p>
+                      <span class="date label label-default">
+                        May 09, 2023
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Starcoder+
+                      <p class="institution">Bigcode</p>
+                      <!--TODO: REPLACE-->
+<a class="link" href="https://arxiv.org/abs/2305.06161">Li et al., '23</a>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 8192</p>
+                    </td>
+                    <td>1.300</td>
+                    <td>5.031</td>
+                    <td>8.042</td>
+                    <td>12.000</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>4</p>
+                      <span class="date label label-default">
+                        May 09, 2023
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      StarCoder
+                      <p class="institution">Bigcode</p>
+<a class="link" href="https://arxiv.org/abs/2305.06161">Li et al., '23</a>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 8192</p>
+                    </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>5</p>
+                      <span class="date label label-default">
+                        Dec 22, 2022
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      SantaCoder
+                      <p class="institution">Bigcode</p>
+                      <a class="link" href="https://arxiv.org/abs/2301.03988">Allal et al., '22</a>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 2048</p>
+                    </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>6</p>
+                      <span class="date label label-default">
+                        Nov 08, 2022
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      InCoder-6B
+                      <p class="institution">Facebook AI</p>
+                      <a class="link" href="https://arxiv.org/abs/2204.05999">Fried et al., '22</a>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 2048</p>
+                    </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>7</p>
+                      <span class="date label label-default">
+                        May 03, 2023
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      CodeGen2-7B
+                      <p class="institution">Salesforce Research</p>
+                      <a class="link" href="https://arxiv.org/abs/2305.02309">Nijkamp et al., '23</a>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 2048</p>
+                    </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>8</p>
+                      <span class="date label label-default">
+                        Nov 08, 2022
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      CodeGen-6B
+                      <p class="institution">Salesforce Research</p>
+                      <a class="link" href="https://arxiv.org/abs/2203.13474">Nijkamp et al., '22</a>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 2048</p>
+                    </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>9</p>
+                      <span class="date label label-default">
+                        May 15, 2023  
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      InstructCodeT5+ 16B
+                      <p class="institution">Salesforce Research</p>
+                      <a class="link" href="https://arxiv.org/abs/2305.07922">Wang et al., '23</a>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 2048</p>
+                    </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="cover" id="contentCover">
+      <!-- Baseline. -->
+      <div class="container-t">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="infoCard">
+              
+              <div class="infoBody">
+                <div class="columns is-centered has-text-centered">
+                  <div class="column is-four-fifths">
+                    <h2 class="is-3"><strong>BioCoder-Rosalind</strong></h2>
+                  </div>
+                </div>
+                <p align="left">
+                  <div class="left">Notice: t=temperature, top-p=top-p cutoff, len = max context length (max generation length is 256). Furthermore, only the Summary Only scores are reported.
+                  </div>
+                </p>
+                <table class="table performanceTable">
+                  <tr>
+                    <th>Rank</th>
+                    <th>Model</th>
+                    <th>Details</th>
+                    <th>Pass@1</th>
+                    <th>Pass@5</th>
+                    <th>Pass@10</th>
+                    <th>Pass@20</th>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>1</p>
+                      <span class="date label label-default">
+                        Mar 14, 2023
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      gpt-4
+                      <p class="institution">Azure OpenAI</p>
+                      <!--TODO: CHANGE LINKS-->
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 8192</p>
+                    </td>
+                    <td>24.308</td>
+                    <td>39.551</td>
+                    <td>44.864</td>
+                    <td>50.198</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>2</p>
+                      <span class="date label label-default">
+                        Mar 01, 2023
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      gpt-3.5-turbo
+                      <p class="institution">Azure OpenAI</p>
+                      <!--TODO: CHANGE LINKS-->
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 8192</p>
+                    </td>
+                    <td>23.671</td>
+                    <td>31.953</td>
+                    <td>36.702</td>
+                    <td>40.725</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>3</p>
+                      <span class="date label label-default">
+                        May 09, 2023
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Starcoder
+                      <p class="institution">Bigcode</p>
+                      <!--TODO: REPLACE-->
+<a class="link" href="https://arxiv.org/abs/2305.06161">Li et al., '23</a>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 8192</p>
+                    </td>
+                    <td>0.534</td>
+                    <td>2.042</td>
+                    <td>3.228</td>
+                    <td>4.743</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>4</p>
+                      <span class="date label label-default">
+                        Nov 08, 2022
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      CodeGen-6B
+                      <p class="institution">Salesforce Research</p>
+                      <a class="link" href="https://arxiv.org/abs/2203.13474">Nijkamp et al., '22</a>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 2048</p>
+                    </td>
+                    <td>0.692</td>
+                    <td>2.088</td>
+                    <td>3.055</td>
+                    <td>3.953</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>5</p>
+                      <span class="date label label-default">
+                        May 09, 2023
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Starcoder+
+                      <p class="institution">Bigcode</p>
+<a class="link" href="https://arxiv.org/abs/2305.06161">Li et al., '23</a>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 8192</p>
+                    </td>
+                    <td>0.356</td>
+                    <td>1.313</td>
+                    <td>1.978</td>
+                    <td>2.767</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>6</p>
+                      <span class="date label label-default">
+                        Dec 22, 2022
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      SantaCoder
+                      <p class="institution">Salesforce Research</p>
+                      <a class="link" href="https://arxiv.org/abs/2301.03988">Allal et al., '22</a>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 2048</p>
+                    </td>
+                    <td>0.158</td>
+                    <td>0.658</td>
+                    <td>1.075</td>
+                    <td>1.581</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>7</p>
+                      <span class="date label label-default">
+                        May 03, 2023
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      CodeGen2-7B
+                      <p class="institution">Salesforce Research</p>
+                      <a class="link" href="https://arxiv.org/abs/2305.02309">Nijkamp et al., '23</a>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 2048</p>
+                    </td>
+                    <td>0.059</td>
+                    <td>0.296</td>
+                    <td>0.593</td>
+                    <td>1.186</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>8</p>
+                      <span class="date label label-default">
+                        May 15, 2023  
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      InstructCodeT5+ 16B
+                      <p class="institution">Salesforce Research</p>
+                      <a class="link" href="https://arxiv.org/abs/2305.07922">Wang et al., '23</a>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 2048</p>
+                    </td>
+                    <td>0.059</td>
+                    <td>0.296</td>
+                    <td>0.593</td>
+                    <td>1.186</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>9</p>
+                      <span class="date label label-default">
+                        Nov 08, 2022
+                      </span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      InCoder-6B
+                      <p class="institution">Facebook AI</p>
+                      <a class="link" href="https://arxiv.org/abs/2204.05999">Fried et al., '22</a>
+                    </td>
+                    <td style="word-break:break-word;">
+                      Completion
+                      <p>t=0.7, top-p=0.95</p>
+                      <p>len = 2048</p>
+                    </td>
+                    <td>0.020</td>
+                    <td>0.099</td>
+                    <td>0.198</td>
+                    <td>0.395</td>
+                  </tr>
+
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="https://arxiv.org/abs/2308.16458">
+          <i class="fas fa-file-pdf" style="color:white"></i>
+        </a>
+        <a class="icon-link" href="https://github.com/biocoder-benchmark/biocoder-benchmark.github.io" class="external-link" disabled>
+          <i class="fab fa-github" style="color:white"></i>
+        </a>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              This means you are free to borrow the <a href="https://github.com/nerfies/nerfies.github.io">source
+                code</a> of this website,
+            </p>
+            <p>
+              This website is forked from <a href="https://github.com/ds1000-code-gen/ds1000-code-gen.github.io">DS-1000</a>. We thank the authors for their work.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+<!-- Default Statcounter code for biocoder
+https://biocoder-benchmark.github.io/ -->
+<script type="text/javascript">
+var sc_project=12893837; 
+var sc_invisible=1; 
+var sc_security="ca09bb0a"; 
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - Statcounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/12893837/0/ca09bb0a/1/"
+alt="Web Analytics Made Easy - Statcounter"
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+  
 </body>
+
 </html>
