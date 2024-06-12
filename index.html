@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="ML-Bench: Large Language Models Leverage Open-source Libraries for Machine Learning Tasks">
+  <meta name="description" content="ML-Bench: Evaluating Large Language Models and Agents for Machine Learning Tasks on Repository-Level Code">
   <meta name="keywords" content="ML-Bench, benchmark, code-generation, paper-with-code, large-language-models, llm">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ML-Bench: Large Language Models Leverage Open-source Libraries for Machine Learning Tasks</title>
@@ -239,7 +239,14 @@ Our contribution:
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-            Large language models have shown promising performance in code generation benchmarks. However, a considerable divide exists between these benchmark achievements and their practical applicability, primarily attributed to real-world programming's reliance on pre-existing libraries. Instead of evaluating LLMs to code from scratch, this work aims to propose a new evaluation setup where LLMs use open-source libraries to finish machine learning tasks. Therefore, we propose ML-Bench, an expansive benchmark developed to assess the effectiveness of LLMs in leveraging existing functions in open-source libraries. Consisting of 10,040 samples spanning 130 tasks over 14 notable machine learning GitHub repositories. In this setting, given a specific machine learning task instruction and the accompanying README in a codebase, an LLM is tasked to generate code to accomplish the task. This necessitates the comprehension of long and language-code interleaved documents, as well as the understanding of complex cross-file code structures, introducing new challenges. Notably, while GPT-4 exhibits remarkable improvement over other LLMs, it manages to accomplish only 39.73\% of the tasks, leaving a huge space for improvement. We address these challenges by proposing ML-Agent, designed to effectively navigate the codebase, locate documentation, retrieve code, and generate executable code. Empirical results demonstrate that ML-Agent, built upon GPT-4, results in further improvements.
+Despite Large Language Models (LLMs) like GPT-4 achieving impressive results in function-level code generation, they struggle with repository-scale code understanding (e.g., coming up with the right arguments for calling routines), requiring a deeper comprehension of complex file interactions. 
+Also, recently, people have developed LLM agents that attempt to interact with repository code (e.g., compiling and evaluating its execution), prompting the need to evaluate their performance.  
+These gaps have motivated our development of \textsc{ML-Bench}, a benchmark rooted in real-world programming applications that leverage existing code repositories to perform tasks. 
+Addressing the need for LLMs to interpret long code contexts and translate instructions into precise, executable scripts, ML-Bench encompasses annotated 9,641 examples across 18 GitHub repositories, challenging LLMs to accommodate user-specified arguments and documentation intricacies effectively.
+To evaluate both LLMs and AI agents, two setups are employed: 
+ML-LLM-Bench for assessing LLMs' text-to-code conversion within a predefined deployment environment, and ML-Agent-Bench for testing autonomous agents in an end-to-end task execution within a Linux sandbox environment. 
+Our findings indicate that while GPT-4o leads with a Pass@5 rate surpassing \textbf{50\%}, there remains significant scope for improvement, highlighted by issues such as hallucinated outputs and difficulties with bash script generation. 
+Notably, in the more demanding \textsc{ML-Agent-Bench}, GPT-4o achieves a \textbf{76.47\%} success rate, reflecting the efficacy of iterative action and feedback in complex task resolution. 
             </p>
 <br>
                     <img src="static/images/structure-1.png">
